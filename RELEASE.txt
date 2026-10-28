@@ -1,0 +1,5 @@
+Traveller v15.1
+Source commit: 440fae304316ee39a0b9340f0f4aded3d54b3fd1
+Tests: 184 passed
+World generation, Nivara preset, stable scrolling and English README fixes
+Original story illustrations: not included

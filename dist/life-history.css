@@ -1,0 +1,12 @@
+.life-history{margin-top:12px}
+.life-terms{list-style:none;margin:18px 0 24px;padding:0;border-top:1px solid var(--line)}
+.life-term{display:grid;grid-template-columns:88px 1fr;gap:22px;padding:18px 0;border-bottom:1px solid var(--line);break-inside:avoid}
+.life-range{display:flex;flex-direction:column;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.life-range strong{color:var(--fg);font-size:13px;font-weight:400}
+.life-range span{font-size:10px;text-transform:uppercase;letter-spacing:.7px}
+.life-career{color:var(--fg);font-size:13px!important;margin:0 0 5px!important}
+.life-term p{margin:0 0 5px;font-size:12px;line-height:1.55}
+.life-term small{display:block;font-size:10px;line-height:1.6}
+.history-log{margin:22px 0 0;padding-top:4px}
+@media(max-width:560px){.life-term{grid-template-columns:68px 1fr;gap:14px}}
+@media print{.life-history{display:block!important}.life-history>summary,.history-log{display:none!important}}

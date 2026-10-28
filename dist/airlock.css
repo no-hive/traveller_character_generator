@@ -1,0 +1,37 @@
+/* A procedural full-screen airlock; all surfaces are CSS and generated SVG. */
+html[data-airlock]:not([data-desktop-blocked]){overflow:hidden}
+html[data-airlock="closed"]:not([data-desktop-blocked]) #app,html[data-airlock="closed"]:not([data-desktop-blocked]) .project-menu,
+html[data-airlock="unlocking"]:not([data-desktop-blocked]) #app,html[data-airlock="unlocking"]:not([data-desktop-blocked]) .project-menu{visibility:hidden}
+html[data-airlock] .skip{visibility:hidden}
+.airlock{position:fixed;inset:0;z-index:200;isolation:isolate;overflow:hidden;background:transparent;color:#ececec}
+.airlock[hidden]{display:none}
+.airlock-leaf{position:absolute;top:0;bottom:0;width:50%;background:#161616;will-change:transform;box-shadow:0 0 40px #000000}
+.airlock-left{left:0;border-right:2px solid #818181}
+.airlock-right{right:0;border-left:2px solid #080808}
+.airlock-leaf>svg{display:block;width:100%;height:100%}
+.airlock-right>svg{transform:scaleX(-1)}
+.airlock-leaf::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#ffffff02 0,#ffffff02 1px,transparent 1px,transparent 4px),linear-gradient(0deg,#00000066,transparent 20%,transparent 80%,#00000066)}
+.airlock-frame{position:absolute;inset:12px;border:10px solid #0d0d0d;box-shadow:inset 0 0 0 2px #696969,0 0 0 2px #464646;z-index:3;pointer-events:none;transition:opacity .4s}
+.airlock-frame::before,.airlock-frame::after{content:'';position:absolute;left:24px;right:24px;height:4px;background:linear-gradient(90deg,#919191 0 10%,transparent 10% 14%,#484848 14% 86%,transparent 86% 90%,#919191 90%)}
+.airlock-frame::before{top:14px}.airlock-frame::after{bottom:14px}
+.airlock-console{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;width:min(430px,70vw);padding:12px;background:#0d0d0d;border:2px solid #8b8b8b;box-shadow:0 0 0 5px #1b1b1b,0 0 0 6px #585858,0 12px 40px #000000bb,inset 0 0 0 2px #070707;transition:opacity .22s,transform .3s}
+.airlock-console::before,.airlock-console::after{content:'';position:absolute;top:calc(50% - 25px);width:38px;height:50px;background:repeating-linear-gradient(0deg,#161616 0 8px,#515151 8px 10px);border:2px solid #393939;box-shadow:0 4px 12px #00000088;transition:transform .32s}
+.airlock-console::before{left:-44px}.airlock-console::after{right:-44px}
+.airlock-enter{position:relative;display:block;width:100%;min-height:108px;padding:26px 18px;text-align:center;font-family:var(--font-data),monospace;font-size:21px;font-weight:500;line-height:1.5;letter-spacing:.04em;color:#ececec;background:repeating-linear-gradient(0deg,#ffffff03 0,#ffffff03 1px,transparent 1px,transparent 3px),#181818;border:1px solid #686868;border-top-color:#a6a6a6;border-left-color:#a6a6a6;box-shadow:inset 0 0 20px #00000099;text-shadow:0 0 12px #dcdcdc35;transition:color .15s,background-color .15s}
+.airlock-enter::before,.airlock-enter::after{content:'';position:absolute;left:14px;right:14px;height:2px;background:linear-gradient(90deg,#bcbcbc 0 12px,transparent 12px calc(100% - 12px),#bcbcbc calc(100% - 12px))}
+.airlock-enter::before{top:12px}.airlock-enter::after{bottom:12px}
+.airlock-enter:hover{background-color:#292929;color:#ffffff;border-color:#cecece}
+.airlock-enter:focus-visible{outline:2px solid #e9e9e9;outline-offset:6px}
+.airlock-enter:disabled{color:#dddddd;cursor:default}
+.airlock[data-state="unlocking"] .airlock-console::before{transform:translateX(-24px)}
+.airlock[data-state="unlocking"] .airlock-console::after{transform:translateX(24px)}
+.airlock[data-state="opening"] .airlock-console{opacity:0;transform:translate(-50%,-50%) scale(.94);pointer-events:none}
+.airlock[data-state="opening"] .airlock-frame{opacity:0}
+/* Keep a defined illustration slot even when the corresponding file is absent. */
+.scene-shell .chronicle .scene-media>.scene-placeholder{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;width:100%;height:auto;aspect-ratio:16/9;min-height:0;max-width:none;max-height:none;margin:0;padding:22px;text-align:center;border:3px double #686868;background:linear-gradient(135deg,transparent calc(50% - .5px),#ffffff09 50%,transparent calc(50% + .5px)),linear-gradient(45deg,transparent calc(50% - .5px),#ffffff09 50%,transparent calc(50% + .5px)),#080808;color:#d1d1d1;overflow:hidden}
+.scene-media>.scene-placeholder span{font-family:var(--font-data);font-size:13px;line-height:1.7;text-transform:uppercase;letter-spacing:.045em;overflow-wrap:anywhere}
+.scene-shell .chronicle .scene-media>.scene-placeholder small{font-family:var(--font-data);font-size:10px;line-height:1.5;letter-spacing:.04em;color:#999999}
+html[data-desktop-blocked] .airlock{display:none!important}
+@media(max-width:1023px){.airlock{display:none!important}}
+@media(prefers-reduced-motion:reduce){.airlock-console,.airlock-console::before,.airlock-console::after,.airlock-frame,.airlock-enter{transition:none}}
+@media print{.airlock{display:none!important}html[data-airlock] #app,html[data-airlock] .project-menu{visibility:visible!important}html[data-airlock]{overflow:visible}}
